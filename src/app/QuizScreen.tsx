@@ -3,6 +3,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import QuestionCard from '../components/QuestionCard';
 
 import questions from '../data/questions';
+import Button from '../components/Button';
 
 const QuizScreen = () => {
   return (
@@ -21,10 +22,10 @@ const QuizScreen = () => {
         </View>
 
         {/* footer */}
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Next</Text>
-          <MaterialIcons name="navigate-next" style={styles.buttonIcon}/>
-        </Pressable>
+        <Button
+          title="Next"
+          onPress={() => console.log('ek')}
+        />
       </View>
     </SafeAreaView>
   )
@@ -51,25 +52,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'purple',
     fontWeight: '500',
-  },
-  button: {
-    backgroundColor: 'purple',
-    padding: 20,
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-    letterSpacing: 2,
-  },
-  buttonIcon: {
-    position: 'absolute',
-    right: 20,
-    color: 'white',
-    fontSize: 24,
   },
 });
 

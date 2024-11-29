@@ -1,18 +1,29 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { Pressable, Text, StyleSheet, PressableProps } from 'react-native'
 
-const Button = () => {
+type ButtonProps = {
+  title: string;
+} & PressableProps
+
+const Button = ({ title, ...pressableProps }: ButtonProps) => {
   return (
-    <View style={styles.container}>
-      <Text>AnswerButton</Text>
-    </View>
+    <Pressable {...pressableProps} style={styles.button}>
+      <Text style={styles.buttonText}>{title}</Text>
+    </Pressable>
   )
 }
 const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    borderColor: 'lightgrey',
-    padding: 10,
-    borderRadius: 100,
+  button: {
+    backgroundColor: 'purple',
+    padding: 20,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    letterSpacing: 2,
   },
 })
 
