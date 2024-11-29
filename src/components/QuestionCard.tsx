@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import AnswerButton from './AnswerButton'
 import { Question } from '../types';
+import Card from './Card';
 
 
 type QuestionCardProps = {
@@ -18,7 +19,7 @@ const QuestionCard = ({ question }: QuestionCardProps) => {
   }
 
   return (
-    <View style={styles.card}>
+    <Card>
       <Text style={styles.question}>{question.title}</Text>
 
       <View style={styles.answers}>
@@ -30,28 +31,11 @@ const QuestionCard = ({ question }: QuestionCardProps) => {
             isSelected={option === selectedOption} />
         )}
       </View>
-    </View>
+    </Card>
   )
 }
 
 const styles = StyleSheet.create({
-  card: {
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    gap: 15,
-    // ios shadow
-    shadowColor: "black",
-    shadowOffset: {
-        width: 0,
-        height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    
-    // android shadow
-    elevation: 4, 
-  },
   question: {
     fontSize: 20,
     fontWeight: '500',
