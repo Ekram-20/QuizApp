@@ -7,7 +7,7 @@ import ResultsCard from "../components/ResultsCard";
 
 const QuizScreen = () => {
 
-  const { question, questionIndex, onNext, totalQuestions } = useQuizContext();
+  const { question, questionIndex, onNext, totalQuestions, isDone} = useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>
@@ -28,7 +28,7 @@ const QuizScreen = () => {
         )}
 
         {/* footer */}
-        <Button title="Next" onPress={onNext} />
+        <Button title={isDone? "Restart" : "Next"} onPress={onNext} />
       </View>
     </SafeAreaView>
   );
