@@ -4,27 +4,35 @@ import QuestionCard from '../components/QuestionCard';
 
 import questions from '../data/questions';
 import Button from '../components/Button';
+import { useState } from 'react';
 
 const QuizScreen = () => {
+
+  const [index, setIndex] = useState(0);
+
+  const onNext = () => {
+    setIndex((currentIndex) => currentIndex + 1)
+  }
+
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
 
         {/* header */}
         <View>
-          <Text style={styles.title}>Question 1/5</Text>
+          <Text style={styles.title}>Question {index + 1}/5</Text>
         </View>
 
         {/* body */} 
         <View>
-          <QuestionCard question={questions[0]} />
+          <QuestionCard question={questions[index]} />
           <Text style={styles.time}>20 sec</Text>
         </View>
 
         {/* footer */}
         <Button
           title="Next"
-          onPress={() => console.log('ek')}
+          onPress={onNext}
         />
       </View>
     </SafeAreaView>
