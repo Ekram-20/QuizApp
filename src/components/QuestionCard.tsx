@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import AnswerButton from './AnswerButton'
 import { Question } from '../types';
 
@@ -10,9 +10,10 @@ type QuestionCardProps = {
 
 const QuestionCard = ({ question }: QuestionCardProps) => {
 
-  const selectedOption = question.options[1];
+  const [selectedOption, setSelectionOption] = useState("");
   
   const selectAnswer = (option: string) => {
+    setSelectionOption(option);
     console.log(option);
   }
 
