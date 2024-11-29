@@ -1,30 +1,26 @@
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
-import QuestionCard from "../components/QuestionCard";
+import { useQuizContext } from "../providers/QuizProvider";
 
-import questions from "../data/questions";
+import QuestionCard from "../components/QuestionCard";
 import Button from "../components/Button";
-import { useState } from "react";
 import ResultsCard from "../components/ResultsCard";
 
 const QuizScreen = () => {
-  const [index, setIndex] = useState(0);
 
-  const onNext = () => {
-    setIndex((currentIndex) => currentIndex + 1);
-  };
+  const { question, questionIndex, onNext } = useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
         {/* header */}
         <View>
-          <Text style={styles.title}>Question {index + 1}/5</Text>
+          <Text style={styles.title}>Question {questionIndex + 1}/5</Text>
         </View>
 
         {/* body */}
-        {questions[index] ? (
+        {question ? (
           <View>
-            <QuestionCard question={questions[index]} />
+            <QuestionCard question={question} />
             <Text style={styles.time}>20 sec</Text>
           </View>
         ) : (

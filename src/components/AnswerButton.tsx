@@ -1,16 +1,19 @@
 import { Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { useQuizContext } from '../providers/QuizProvider';
 
 
 type AnswerButtonProps = {
   text: string,
-  isSelected?: boolean,
-  onPress: () => void
 }
 
-const AnswerButton = ({ text, isSelected, onPress }: AnswerButtonProps) => {
+const AnswerButton = ({ text }: AnswerButtonProps) => {
+
+  const { selectedOption, setSelectionOption } = useQuizContext();
+  const isSelected = selectedOption === text;
+
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={() => setSelectionOption(text)}
       style={[styles.container, isSelected && styles.selectedContainer]}
     >
       <Text>{text}</Text>
@@ -31,6 +34,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default AnswerButton
-
-
+export default AnswerButton;

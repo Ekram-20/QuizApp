@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import AnswerButton from './AnswerButton'
 import { Question } from '../types';
+import AnswerButton from './AnswerButton'
 import Card from './Card';
 
 
@@ -11,13 +10,6 @@ type QuestionCardProps = {
 
 const QuestionCard = ({ question }: QuestionCardProps) => {
 
-  const [selectedOption, setSelectionOption] = useState("");
-  
-  const selectAnswer = (option: string) => {
-    setSelectionOption(option);
-    console.log(option);
-  }
-
   return (
     <Card>
       <Text style={styles.question}>{question.title}</Text>
@@ -26,9 +18,8 @@ const QuestionCard = ({ question }: QuestionCardProps) => {
         {question.options.map((option) => 
           <AnswerButton
             key={option}
-            onPress={() => selectAnswer(option)}
             text={option}
-            isSelected={option === selectedOption} />
+          />
         )}
       </View>
     </Card>
