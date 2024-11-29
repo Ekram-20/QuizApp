@@ -7,14 +7,14 @@ import ResultsCard from "../components/ResultsCard";
 
 const QuizScreen = () => {
 
-  const { question, questionIndex, onNext } = useQuizContext();
+  const { question, questionIndex, onNext, totalQuestions } = useQuizContext();
 
   return (
     <SafeAreaView style={styles.page}>
       <View style={styles.container}>
         {/* header */}
         <View>
-          <Text style={styles.title}>Question {questionIndex + 1}/5</Text>
+          <Text style={styles.title}>Question {questionIndex + 1}/{totalQuestions}</Text>
         </View>
 
         {/* body */}
