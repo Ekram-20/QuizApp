@@ -24,12 +24,20 @@ const QuizContext = createContext<QuizProviderProps>({
 
 export const QuizProvider = ({ children }: PropsWithChildren) => {
     
+    // handling change the question
     const [questionIndex, setQuestionIndex] = useState(0);
     const question = questions[questionIndex];
 
+    // handle the selected option
     const [selectedOption, setSelectionOption] = useState("");
+
+    // compote the score
     const [score, setScore] = useState(0);
+
+    // number of questions
     const totalQuestions = questions.length;
+
+    // decide if the quiz is finish to restart
     const isDone = questionIndex >= totalQuestions;
 
     const restart = () => {
