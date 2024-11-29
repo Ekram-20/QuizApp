@@ -4,33 +4,24 @@ import { useQuizContext } from "../providers/QuizProvider";
 import QuestionCard from "../components/QuestionCard";
 import Button from "../components/Button";
 import ResultsCard from "../components/ResultsCard";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useTimer } from "../hooks/useTimer";
 
 const QuizScreen = () => {
 
   const { question, questionIndex, onNext, totalQuestions, isDone } = useQuizContext();
-  const [timer, setTimer] = useState(20);
+  const { time, startTimer, stopTimer } = useTimer(20);
   
   useEffect(() => {
-
-    setTimer(20);
-
-    // make function that decrease every 1s
-    const interval = setInterval(() => {
-      setTimer((t) => {
-        // decrease when it is in the time limited
-        if (t > 0)
-          return (t - 1)
-        // when the 20 is finish move to the next question
-        onNext();
-        return 0
-      })
-    }, 1000); // in seconds
-    
-    // clear previous question timer
-    return () => clearInterval(interval)
-
+    startTimer();
+    return () => stopTimer();  // clear previous question timer
   }, [question]); // make timer for each question when it change
+
+
+  useEffect(() => {
+    if (isDone) return;
+    if (time <= 0) onNext(); // when time finish for a question
+  }, [time]); 
 
   return (
     <SafeAreaView style={styles.page}>
@@ -44,7 +35,7 @@ const QuizScreen = () => {
         {question ? (
           <View>
             <QuestionCard question={question} />
-            <Text style={styles.time}>{timer} sec</Text>
+            <Text style={styles.time}>{time} sec</Text>
           </View>
         ) : (
           <ResultsCard />
@@ -70,8 +61,6 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     color: "purple",
-    fontSize: 18,
-    fontWeight: "bold",
   },
   time: {
     textAlign: "center",
